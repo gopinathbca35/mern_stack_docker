@@ -13,7 +13,9 @@ pipeline {
 
         stage('Clone Code') {
             steps {
-                git credentialsId: 'git-cred', url: 'https://github.com/gopinathbca35/mern_stack_docker.git'
+                git branch: 'main',
+                    credentialsId: 'git-cred', 
+                    url: 'https://github.com/gopinathbca35/mern_stack_docker.git'
             }
         }
 
@@ -31,14 +33,9 @@ pipeline {
             }
         }
 
-        stage('Build Images') {
+        stage('Build Images & Tag') {
             steps {
                 sh 'docker compose build'
-            }
-        }
-
-        stage('Tag Images') {
-            steps {
                 sh '''
                 docker tag $DOCKERHUB_REPO-backend:$IMAGE_TAG $DOCKERHUB_USERNAME/$DOCKERHUB_REPO-backend:$IMAGE_TAG
                 docker tag $DOCKERHUB_REPO-frontend:$IMAGE_TAG $DOCKERHUB_USERNAME/$DOCKERHUB_REPO-frontend:$IMAGE_TAG
