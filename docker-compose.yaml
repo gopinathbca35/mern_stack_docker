@@ -6,7 +6,7 @@ services:
     networks:
       - mern_network
     depends_on:
-      - mongodb
+      - mongodb 
     restart: always     
   frontend:
     build: ./mern/frontend
@@ -14,6 +14,8 @@ services:
       - "5173:5173"
     networks:
       - mern_network
+    environment:
+    - VITE_API_URL=http://35.154.70.34:5050      
   mongodb:
     image: mongo:latest
     ports:
