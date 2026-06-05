@@ -23,7 +23,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'sonar-scanner', variable: 'SONAR_TOKEN')]) {
                 sript {
-                    def scannerHome = tool 'sonar-scanner'
+                    def scannerHome = tool 'SonarScanner'
                     withSonarQubeEnv('sonar') {
                         sh '''
                         ${scannerHome}/bin/sonar-scanner \
