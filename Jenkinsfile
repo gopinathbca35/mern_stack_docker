@@ -5,7 +5,7 @@ pipeline {
         DOCKERHUB_USERNAME = "gopinathbca35"
         DOCKERHUB_REPO = "mern_stack_docker"
         IMAGE_TAG = "latest"
-        EC2_IP = "35.154.70.34"
+        EC2_IP = "52.66.243.24"
         EC2_USER = "ubuntu"
     }
 
@@ -17,7 +17,22 @@ pipeline {
                     credentialsId: 'git-cred', 
                     url: 'https://github.com/gopinathbca35/mern_stack_docker.git'
             }
-        }
+        }  
+
+        stage('SonarQube Analysis') {
+            steps {
+                withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
+                    withSonarQubeEnv('sonar') {
+                        sh '''
+                        sonar-scanner \
+                        -Dsonar.projectKey=mern_stack_docker \
+                        -Dsonar.sources=. \
+                        -Dsonar.login=$SONAR_TOKEN
+                        '''
+                    }
+                }
+            }
+        }    
 
         stage('Docker Login') {
             steps {
