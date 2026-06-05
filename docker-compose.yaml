@@ -17,7 +17,7 @@ services:
     environment:
     - VITE_API_URL=http://35.154.70.34:5050      
   mongodb:
-    image: mongo:latest
+    image: mongo:7.0
     ports:
       - "27017:27017"
     networks:
