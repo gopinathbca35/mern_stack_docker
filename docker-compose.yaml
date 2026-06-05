@@ -18,12 +18,14 @@ services:
     - VITE_API_URL=http://35.154.70.34:5050      
   mongodb:
     image: mongo:8.2
+    container_name: mongodb
     ports:
       - "27017:27017"
     networks:
       - mern_network
     volumes:
       - mongo-data:/data/db
+    restart: always  
 
 networks:
   mern_network:
