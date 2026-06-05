@@ -25,12 +25,12 @@ pipeline {
                 sript {
                     def scannerHome = tool 'SonarScanner'
                     withSonarQubeEnv('sonar') {
-                        sh '''
+                        sh """
                         ${scannerHome}/bin/sonar-scanner \
                         -Dsonar.projectKey=mern_stack_docker \
                         -Dsonar.sources=. \
                         -Dsonar.login=${SONAR_TOKEN}
-                        '''
+                        """
                     }  }
                 }
             }
