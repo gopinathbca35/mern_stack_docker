@@ -22,14 +22,16 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withCredentials([string(credentialsId: 'sonar-scanner', variable: 'SONAR_TOKEN')]) {
+                sript {
+                    def scannerHome = tool 'sonar-scanner'
                     withSonarQubeEnv('sonar') {
                         sh '''
-                        sonar-scanner \
+                        ${scannerHome}/bin/sonar-scanner \
                         -Dsonar.projectKey=mern_stack_docker \
                         -Dsonar.sources=. \
-                        -Dsonar.login=$SONAR_TOKEN
+                        -Dsonar.login=${SONAR_TOKEN}
                         '''
-                    }
+                    }  }
                 }
             }
         }    
