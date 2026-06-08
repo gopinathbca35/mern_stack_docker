@@ -1,6 +1,6 @@
 services:
   backend:
-    build: gopinathbca35/mern_stack_docker-backend
+    image: gopinathbca35/mern_stack_docker-backend
     ports:
       - "5050:5050"
     networks:
@@ -9,7 +9,7 @@ services:
       - mongodb 
     restart: always     
   frontend:
-    build: gopinathbca35/mern_stack_docker-frontend
+    image: gopinathbca35/mern_stack_docker-frontend
     ports:
       - "5173:5173"
     networks:
