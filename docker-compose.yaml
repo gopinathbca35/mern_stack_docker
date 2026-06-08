@@ -1,6 +1,6 @@
 services:
   backend:
-    build: ./mern/backend
+    build: gopinathbca35/mern_stack_docker-backend
     ports:
       - "5050:5050"
     networks:
@@ -9,13 +9,13 @@ services:
       - mongodb 
     restart: always     
   frontend:
-    build: ./mern/frontend
+    build: gopinathbca35/mern_stack_docker-frontend
     ports:
       - "5173:5173"
     networks:
       - mern_network
     environment:
-    - VITE_API_URL=http://52.66.243.24:5050      
+    - VITE_API_URL=http://3.108.59.165:5050      
   mongodb:
     image: mongo:8.2
     container_name: mongodb

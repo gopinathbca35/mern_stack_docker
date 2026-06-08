@@ -5,7 +5,7 @@ pipeline {
         DOCKERHUB_USERNAME = "gopinathbca35"
         DOCKERHUB_REPO = "mern_stack_docker"
         IMAGE_TAG = "latest"
-        EC2_IP = "52.66.243.24"
+        EC2_IP = "3.108.59.165"
         EC2_USER = "ubuntu"
     }
 
@@ -19,7 +19,7 @@ pipeline {
             }
         }  
 
-        stage('SonarQube Analysis') {
+      /*  stage('SonarQube Analysis') {
             steps {
                 withCredentials([string(credentialsId: 'sonar-scanner', variable: 'SONAR_TOKEN')]) {
                 script {
@@ -67,7 +67,7 @@ pipeline {
                 docker push $DOCKERHUB_USERNAME/$DOCKERHUB_REPO-frontend:$IMAGE_TAG
                 '''
             }
-        }
+        } */
 
         stage('Deploy to EC2') {
             steps {
